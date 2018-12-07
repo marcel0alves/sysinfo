@@ -7,7 +7,7 @@ Setup:
 - st Terminal
 - bash
 
-![alt text](https://i.imgur.com/Z2lwJNj.png)
+![alt text](https://i.postimg.cc/c0CcV9q3/07-12-2018-16-32-42.png)
 
 Created by Marcelo Alves.
 
