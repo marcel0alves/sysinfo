@@ -13,6 +13,8 @@ hostname="$(uname -n)"
 host="$(cat /sys/devices/virtual/dmi/id/product_name)"
 bios="$(echo $(cat /sys/devices/virtual/dmi/id/bios_{vendor,version}))"
 cpu="$(awk -F ': ' '/model name/ {printf $2; exit}' /proc/cpuinfo)"
+cpu_cores="$(awk -F ': ' '/cpu cores/ {print $2; exit}' /proc/cpuinfo)"
+cpu_threads="$(awk -F ': ' '/processor/ {print $2}' /proc/cpuinfo | wc -l)"
 cpu_bugs="$(awk -F ': ' '/bugs/ {print $2; exit}' /proc/cpuinfo)"
 mem_info="$(free -m | awk '/Mem/{print $3"MiB", $2"MiB"}' OFS=' / ')"
 shell="$(basename $SHELL)"
@@ -29,12 +31,13 @@ Let's go.
 OS:		${os}
 Hostname:	${hostname}
 Host:		${host}
-Bios:		${bios}
+BIOS:		${bios}
 Kernel:		${kernel}
-Processor:	${cpu}
+Processor:	${cpu} - ${cpu_cores}C/${cpu_threads}T
 CPU Bugs:	${cpu_bugs}
 Memory:		${mem_info}
 Shell:		${shell}
+Terminal:	$TERM
 
 EOF
 
