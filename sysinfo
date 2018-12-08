@@ -40,16 +40,3 @@ Shell:		${shell}
 Terminal:	$TERM
 
 EOF
-
-
-
-
-
-
-
-# Testing area
-#
-# userandhost="$(echo $(whoami)@$(uname -n))"
-# mem_total="$(cat /proc/meminfo | awk '/MemTotal/ {printf $2}')"
-# mem_usage="$(cat /proc/meminfo | awk '/Active/ {print $2}' | head -n 1)"
-# mem_info="$(($mem_usage / 1024))MiB / $(($mem_total / 1024))MiB"
