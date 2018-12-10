@@ -29,7 +29,6 @@ clear
 
 # Print sysinfo
 cat <<EOF 
-
 ${bold}${magenta}Well, some information about your system.
 ${bold}${magenta}Let's go.
 
