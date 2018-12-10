@@ -19,24 +19,31 @@ cpu_bugs="$(awk -F ': ' '/bugs/ {print $2; exit}' /proc/cpuinfo)"
 mem_info="$(free -m | awk '/Mem/{print $3"MiB", $2"MiB"}' OFS=' / ')"
 shell="$(basename $SHELL)"
 
+# Colors
+bold="$(tput bold)"
+reset="$(tput sgr0)"
+magenta="$(tput setaf 5)"
+
 # Clear screen
 clear 
 
 # Print sysinfo
 cat <<EOF 
 
-Well, some information about your system.
-Let's go.
+${bold}${magenta}Well, some information about your system.
+${bold}${magenta}Let's go.
 
-OS:		${os}
-Hostname:	${hostname}
-Host:		${host}
-BIOS:		${bios}
-Kernel:		${kernel}
-Processor:	${cpu} - ${cpu_cores}C/${cpu_threads}T
-CPU Bugs:	${cpu_bugs}
-Memory:		${mem_info}
-Shell:		${shell}
-Terminal:	$TERM
+${reset}
+
+${bold}${magenta}OS:			${reset}${os}
+${bold}${magenta}Hostname:		${reset}${hostname}
+${bold}${magenta}Host:			${reset}${host}
+${bold}${magenta}BIOS:			${reset}${bios}
+${bold}${magenta}Kernel:			${reset}${kernel}
+${bold}${magenta}Processor:		${reset}${cpu} - ${cpu_cores}C/${cpu_threads}T
+${bold}${magenta}CPU Bugs:		${reset}${cpu_bugs}
+${bold}${magenta}Memory:			${reset}${mem_info}
+${bold}${magenta}Shell:			${reset}${shell}
+${bold}${magenta}Terminal:		${reset}$TERM
 
 EOF
