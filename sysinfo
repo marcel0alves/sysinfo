@@ -5,6 +5,8 @@
 # By: Marcelo Alves
 # No Copyright, license or any shit. Intelectual property doesn't exists.
 
+
+
 # System information
 
 os="$(sed -rn '/^NAME/ s/^NAME="?([a-z A-Z]+).?$/\1/p' /etc/os-release)"
@@ -18,6 +20,7 @@ cpu_threads="$(awk -F ': ' '/processor/ {print $2}' /proc/cpuinfo | wc -l)"
 cpu_bugs="$(awk -F ': ' '/bugs/ {print $2; exit}' /proc/cpuinfo)"
 mem_info="$(free -m | awk '/Mem/{print $3"MiB", $2"MiB"}' OFS=' / ')"
 shell="$(basename $SHELL)"
+uptime="$(uptime -p | sed 's/u/U/')"
 
 # Colors
 bold="$(tput bold)"
@@ -44,5 +47,6 @@ ${bold}${magenta}CPU Bugs:		${reset}${cpu_bugs}
 ${bold}${magenta}Memory:			${reset}${mem_info}
 ${bold}${magenta}Shell:			${reset}${shell}
 ${bold}${magenta}Terminal:		${reset}$TERM
+${bold}${magenta}Uptime:			${reset}${uptime}
 
 EOF
