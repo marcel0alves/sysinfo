@@ -21,8 +21,7 @@ cpu_bugs="$(awk -F ': ' '/bugs/ {print $2; exit}' /proc/cpuinfo)"
 mem_info="$(free -m | awk '/Mem/{print $3"MiB", $2"MiB"}' OFS=' / ')"
 shell="$(basename $SHELL)"
 uptime="$(uptime -p | sed 's/u/U/')"
-wlan_driver="$(awk -F '=' '/DRIVER=/ {print $2}' /sys/class/net/{enp*,eth*}/device/uevent)"
-eth_driver="$(awk -F '=' '/DRIVER=/ {print $2}' /sys/class/net/{wlp*,wlan*}/device/uevent)"
+# network_driver="$(awk -F '=' '/DRIVER=/ {print $2}' /sys/class/net/*/device/uevent | tr '\n' ' ')"
 
 # Colors
 bold="$(tput bold)"
@@ -47,8 +46,6 @@ ${bold}${magenta}Kernel:			${reset}${kernel}
 ${bold}${magenta}Processor:		${reset}${cpu} - ${cpu_cores}C/${cpu_threads}T
 ${bold}${magenta}CPU Bugs:		${reset}${cpu_bugs}
 ${bold}${magenta}Memory:			${reset}${mem_info}
-${bold}${magenta}Wireless Driver:	${reset}${wlan_driver}
-${bold}${magenta}Ethernet Driver:	${reset}${eth_driver}
 ${bold}${magenta}Shell:			${reset}${shell}
 ${bold}${magenta}Terminal:		${reset}$TERM
 ${bold}${magenta}Uptime:			${reset}${uptime}
