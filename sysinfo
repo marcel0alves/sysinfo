@@ -22,6 +22,7 @@ mem_info="$(free -m | awk '/Mem/{print $3"MiB", $2"MiB"}' OFS=' / ')"
 shell="$(basename $SHELL)"
 uptime="$(uptime -p | sed 's/u/U/')"
 # network_driver="$(awk -F '=' '/DRIVER=/ {print $2}' /sys/class/net/*/device/uevent | tr '\n' ' ')"
+# gpu_info="$(lspci -mm | awk -F '\\"|\\" \\"|\\(' '/"Display|"3D|"VGA/ {a[$0] = $3 " " $4} END {for(i in a) {if(!seen[a[i]]++) print a[i]}}' | awk 'NR%2{printf  "%s | ",$0;next;}1')"
 
 # Colors
 bold="$(tput bold)"
@@ -33,7 +34,7 @@ clear
 
 # Print sysinfo
 cat <<EOF 
-${bold}${magenta}Well, some information about your system.
+${bold}${magenta}Well, let me show some information about your system.
 ${bold}${magenta}Let's go.
 
 ${reset}
