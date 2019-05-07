@@ -34,9 +34,7 @@ clear
 
 # Print sysinfo
 cat <<EOF 
-${bold}${magenta}Well, let me show some information about your system.
-${bold}${magenta}Let's go.
-
+${bold}${magenta}System information.
 ${reset}
 
 ${bold}${magenta}OS:			${reset}${os}
